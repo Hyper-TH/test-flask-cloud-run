@@ -13,7 +13,7 @@ CORS(app)
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'student'
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '35.246.117.104'
 mysql.init_app(app)
 
 @app.route('/')
@@ -69,7 +69,7 @@ def read(): # Name of the method
     rv = cur.fetchall() #Retreive all rows returend by the SQL statment
     Results=[]
     for row in rv: #Format the Output Results and add to return string
-        Result={}
+        Result={}       
         Result['Name']=row[0].replace('\n',' ')
         Result['Email']=row[1]
         Result['ID']=row[2]
