@@ -11,7 +11,7 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "hello.py", // app1 is part a of the lab
+                "FLASK_APP": "app.py", 
                 "FLASK_DEBUG": "1"
             },
             "args": [
