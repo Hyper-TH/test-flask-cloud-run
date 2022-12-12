@@ -3,6 +3,7 @@ from flask import request
 from flask_mysqldb import MySQL
 from flask_cors import CORS
 import json
+import os
 mysql = MySQL()
 app = Flask(__name__, template_folder='template')
 CORS(app)
@@ -84,4 +85,5 @@ def read(): # Name of the method
     return ret
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port='8080') #Run the flask app at port 8080
+    # app.run(host='0.0.0.0',port='8080') #Run the flask app at port 8080
+    app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
