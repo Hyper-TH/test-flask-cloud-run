@@ -5,3 +5,4 @@ RUN pip install -r requirements.txt
 COPY . /app
 ENTRYPOINT [ "python" ]
 CMD ["hello.py" ]
+EXPOSE 8080
