@@ -16,11 +16,12 @@ app.config['MYSQL_DB'] = 'student'
 app.config['MYSQL_HOST'] = '35.246.117.104'
 mysql.init_app(app)
 
+# Starting point
 @app.route('/')
 def home():
     return render_template("index.html")
 
-# This is the home / index page (How to make this our starting point???)
+# Starting point
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     return render_template("index.html")
@@ -62,6 +63,7 @@ def deletePage():
     return render_template("delete.html")
 
 
+# Show all students in JSON form
 @app.route("/read", methods=['GET', 'POST']) #Default - Show Data
 def read(): # Name of the method
     cur = mysql.connection.cursor() #create a connection to the SQL instance
@@ -85,5 +87,4 @@ def read(): # Name of the method
     return ret
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port='8080') #Run the flask app at port 8080
-# app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
+    app.run(host='0.0.0.0',port='8080') # Run the flask app at port 8080
