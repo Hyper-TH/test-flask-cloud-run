@@ -14,6 +14,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'student'
 app.config['MYSQL_HOST'] = '35.246.117.104'
+# app.config['MYSQL_HOST'] = 'localhost'
 mysql.init_app(app)
 
 # Starting point
@@ -51,6 +52,20 @@ def delete():
 
         return render_template("success.html")
 
+# Delete student
+@app.route("/update", methods=['GET', 'POST']) #Delete Student
+def update():
+    if request.method == "POST":
+        ID = request.form['ID']
+        name = request.form['studentName']
+        email = request.form['email']
+        cursor = mysql.connection.cursor() # create a connection to the SQL instance
+        cursor.execute('''UPDATE students SET studentName=%s, email=%s WHERE studentID=%s''', (name,email,ID)) # execute
+        mysql.connection.commit()
+        cursor.close()
+
+        return render_template("success.html")
+
 
 # Change to add form html
 @app.route('/addPage', methods=['GET', 'POST'])
@@ -62,6 +77,10 @@ def addPage():
 def deletePage():
     return render_template("delete.html")
 
+# Change to update form html
+@app.route('/updatePage', methods=['GET','POST'])
+def updatePage():
+    return render_template("update.html")
 
 # Show all students in JSON form
 @app.route("/read", methods=['GET', 'POST']) #Default - Show Data
